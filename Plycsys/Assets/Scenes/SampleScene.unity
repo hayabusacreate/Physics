@@ -295,11 +295,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3b6aab519afa5146876af106608823f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m: 0.5
-  v: -0.1
+  m: 1
+  v: 0.1
   x: -5
   gameObject: {fileID: 1520389383}
   lr: 0
+  check: 1
 --- !u!135 &1254279348
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -404,11 +405,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3b6aab519afa5146876af106608823f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m: 1
+  m: 1.5
   v: -0.1
   x: 5
   gameObject: {fileID: 1254279346}
-  lr: 0
+  lr: 1
+  check: 0
 --- !u!135 &1520389385
 SphereCollider:
   m_ObjectHideFlags: 0
