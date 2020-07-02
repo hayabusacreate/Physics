@@ -53,7 +53,6 @@ public class Phcsys3 : MonoBehaviour
                 gameObject.GetComponent<Phcsys3>().v = ((gameObject.GetComponent<Phcsys3>().m - m) * gameObject.GetComponent<Phcsys3>().v + 2 * m * v) / (m + gameObject.GetComponent<Phcsys3>().m);
                 //v *= -1;
                 //gameObject.GetComponent<Phcsys2>().v *= -1;
-                Debug.Log(distance);
                 // v = ((m - gameObject.GetComponent<Phcsys2>().m) * v + 2 * gameObject.GetComponent<Phcsys2>().m * 2 * gameObject.GetComponent<Phcsys2>().v) / (m +  gameObject.GetComponent<Phcsys2>().m);
             }
         }
