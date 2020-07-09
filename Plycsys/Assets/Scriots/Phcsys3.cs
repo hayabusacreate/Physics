@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Phcsys3 : MonoBehaviour
 {
     public float m;
-    public float v,x,y;
+    public float x,y;
+    private Vector3 v;
     private Vector3 savev;
     private float savem;
     public GameObject gameObject;
@@ -16,48 +18,55 @@ public class Phcsys3 : MonoBehaviour
     void Start()
     {
         //savev = v;
+        if(check)
+        {
+            v.x = x;
+            v.y = y;
+        }else
+        {
+            v.x = x;
+            v.y = y;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (x > 10&&lr)
+        if (transform.position.x> 10&&!lr)
         {
             v *= -1;
         }
-        if (x < -10&&!lr)
+        if (transform.position.x < -10&&!lr)
         {
             v *= -1;
             
         }
-        if (y < -5 && !lr)
+        if (transform.position.y < -5 && !lr)
         {
             v *= -1;
 
         }
-        if (x > 5 && !lr)
+        if (transform.position.y > 5 && !lr)
         {
             v *= -1;
 
         }
-
-
         distance = Vector3.Distance(gameObject.transform.position, transform.position);
 
         if(check)
         {
-            if (distance <= 1.1&&distance>0.9f)
+            if (distance <= 1 && distance > 0.75f)
             {
+                Vector3 a = gameObject.transform.position - transform.position;
+                Vector3 n = (gameObject.transform.position - transform.position) / (a.magnitude);
+                Vector3 savev = -(Vector3.Dot((v - gameObject.GetComponent<Phcsys3>().v), n)) * (n + v)/2;
 
-                savev = (transform.position-gameObject.transform.position);
-                gameObject.GetComponent<Phcsys3>().v = ((gameObject.GetComponent<Phcsys3>().m - m) * gameObject.GetComponent<Phcsys3>().v + 2 * m * v) / (m + gameObject.GetComponent<Phcsys3>().m);
-                //v *= -1;
-                //gameObject.GetComponent<Phcsys2>().v *= -1;
-                // v = ((m - gameObject.GetComponent<Phcsys2>().m) * v + 2 * gameObject.GetComponent<Phcsys2>().m * 2 * gameObject.GetComponent<Phcsys2>().v) / (m +  gameObject.GetComponent<Phcsys2>().m);
+                gameObject.GetComponent<Phcsys3>().v = -(Vector3.Dot((gameObject.GetComponent<Phcsys3>().v - v), n)) * (n + gameObject.GetComponent<Phcsys3>().v)/2;
+                v =savev;
             }
         }
-        x = x + m * v;
-        y = y + m * v;
-        transform.position = new Vector3(x, y, 0);
+
+        
+        transform.position += new Vector3(v.x, v.y, 0);
     }
 }
